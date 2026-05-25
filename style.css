@@ -834,7 +834,7 @@ p {
    Kotak kuning muda berisi peringatan ringan untuk pengguna.
    ---------------------------------------------------------- */
 .disclaimer-strip {
-    margin-top: 0.3rem;
+    margin-top: 0.5rem;
     padding: 0.9rem 1.1rem;
     background: #fffbeb;
     border: 1px solid #fcd34d;
@@ -1199,6 +1199,19 @@ p {
     color: #344054;
     margin-bottom: 0.85rem;
     letter-spacing: 0.2px;
+}
+
+
+/* ----------------------------------------------------------
+   JARAK ANTAR KOLOM METRIK
+   Kurangi gap default Streamlit antar kolom st.metric
+   ---------------------------------------------------------- */
+[data-testid="stMetric"] + [data-testid="stMetric"] {
+    margin-left: 0 !important;
+}
+
+div[data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) {
+    gap: 1rem !important;
 }
 
 

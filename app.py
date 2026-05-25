@@ -5,7 +5,7 @@
 
   Deskripsi:
     Antarmuka web untuk menganalisis file PDF menggunakan
-    model XGBoost + Forensik Heuristik Hybrid.
+    model Random Forest + Forensik Heuristik Hybrid.
 
   Cara menjalankan:
     streamlit run app.py
@@ -554,7 +554,7 @@ def main():
                 # ── Langkah 3: Selaraskan fitur ──
                 df_fitur = selaraskan_fitur(fitur_untuk_ai, feature_names)
 
-                # ── Langkah 4: Prediksi XGBoost & HYBRID OVERRIDE ──
+                # ── Langkah 4: Prediksi Random Forest & HYBRID OVERRIDE ──
                 probabilitas      = model.predict_proba(df_fitur)[0]
                 keyakinan_malware = probabilitas[1] * 100   # backend only
                 keyakinan_aman    = probabilitas[0] * 100   # backend only
@@ -605,7 +605,7 @@ def main():
                 # ── Kotak hasil: AMAN ──
                 st.markdown(f"""
                 <div class="result-safe">
-                    <span class="rs-icon">✅</span>
+                    <span class="rs-icon"></span>
                     <div class="rs-title">File Aman</div>
                     <p class="rs-desc">
                         File <strong>{file_unggah.name}</strong> tidak menunjukkan tanda-tanda
@@ -616,9 +616,9 @@ def main():
 
                 st.markdown("<br>", unsafe_allow_html=True)
                 ca, cb, cc = st.columns(3)
-                with ca: st.metric("🛡️ Status",        "AMAN",  delta="Tidak Terancam")
-                with cb: st.metric("🤖 Hasil AI",      "Aman")
-                with cc: st.metric("⚠️ Sinyal Bahaya", "0")
+                with ca: st.metric("Status",        "AMAN",  delta="Tidak Terancam")
+                with cb: st.metric("Hasil AI",      "Aman")
+                with cc: st.metric("Sinyal Bahaya", "0")
 
                 st.success(
                     f"✔ File **{file_unggah.name}** lolos pemindaian. "
@@ -629,7 +629,7 @@ def main():
                 # ── Kotak hasil: VIRUS (UI pakai "Virus", log JSON tetap "MALWARE") ──
                 st.markdown(f"""
                 <div class="result-virus">
-                    <span class="rm-icon">🚨</span>
+                    <span class="rm-icon"></span>
                     <div class="rm-title">Potensi Virus Terdeteksi</div>
                     <p class="rm-desc">
                         File <strong>{file_unggah.name}</strong> terindikasi mengandung
@@ -641,12 +641,12 @@ def main():
 
                 st.markdown("<br>", unsafe_allow_html=True)
                 ca, cb, cc = st.columns(3)
-                with ca: st.metric("🚨 Status",         "BERBAHAYA", delta="Virus", delta_color="inverse")
-                with cb: st.metric("🤖 Hasil AI",       "Berbahaya")
-                with cc: st.metric("⚠️ Sinyal Bahaya",  str(len(profil_ancaman)))
+                with ca: st.metric("Status",         "BERBAHAYA", delta="Virus", delta_color="inverse")
+                with cb: st.metric("Hasil AI",       "Berbahaya")
+                with cc: st.metric("Sinyal Bahaya",  str(len(profil_ancaman)))
 
                 st.error(
-                    f"🚫 File **{file_unggah.name}** terindikasi mengandung virus. "
+                    f"File **{file_unggah.name}** terindikasi mengandung virus. "
                     "Jangan buka dan segera hapus atau karantina file ini!"
                 )
 
@@ -737,7 +737,7 @@ def main():
                     f"{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
                 )
                 st.download_button(
-                    label="⬇️ Unduh Log",
+                    label="Unduh Log",
                     data=json_str.encode("utf-8"),
                     file_name=nama_file_log,
                     mime="application/json",
