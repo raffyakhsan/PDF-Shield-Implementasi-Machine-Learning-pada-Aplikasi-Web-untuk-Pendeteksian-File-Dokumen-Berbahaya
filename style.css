@@ -1,0 +1,1221 @@
+/* ============================================================
+   style.css — PDF-Shield
+   File ini berisi seluruh tampilan (CSS) aplikasi.
+   Dipanggil dari app.py menggunakan open("style.css").
+   ============================================================ */
+
+
+/* ----------------------------------------------------------
+   IMPORT FONT
+   Mengambil font Inter dari Google Fonts agar teks lebih rapi.
+   ---------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+
+/* ----------------------------------------------------------
+   SEMBUNYIKAN SIDEBAR STREAMLIT
+   Kita tidak pakai sidebar, jadi semuanya disembunyikan.
+   ---------------------------------------------------------- */
+[data-testid="stSidebar"],
+[data-testid="collapsedControl"],
+button[kind="header"] {
+    display: none !important;
+}
+
+
+/* ----------------------------------------------------------
+   BACKGROUND & FONT GLOBAL
+   Mengatur warna latar belakang aplikasi dan jenis huruf.
+   Font-size 19px agar teks besar dan mudah dibaca di proyektor.
+   ---------------------------------------------------------- */
+html, body, .stApp {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    background-color: #f0f2f5 !important;
+    color: #344054 !important;
+    font-size: 19px !important;
+}
+
+/* Pastikan background halaman konsisten */
+.stApp {
+    background-color: #f0f2f5 !important;
+}
+
+
+/* ----------------------------------------------------------
+   AREA KONTEN UTAMA
+   Diperlebar ke 900px agar tabel dan konten punya ruang lega
+   saat font berukuran besar untuk keperluan presentasi.
+   ---------------------------------------------------------- */
+.block-container {
+    max-width: 900px !important;
+    padding: 1.5rem 1.5rem 4rem !important;
+    margin: 0 auto !important;
+}
+
+
+/* ----------------------------------------------------------
+   JUDUL DAN TEKS
+   Mengatur warna dan jenis huruf untuk judul-judul halaman.
+   ---------------------------------------------------------- */
+h1, h2, h3, h4 {
+    font-family: 'Inter', sans-serif !important;
+    color: #101828 !important;
+    letter-spacing: -0.4px;
+}
+
+p {
+    color: #344054;
+    line-height: 1.7;
+}
+
+
+/* ----------------------------------------------------------
+   HEADER APLIKASI
+   Bagian atas halaman: judul besar "PDF-Shield" dan tagline.
+   ---------------------------------------------------------- */
+.app-header {
+    text-align: center;
+    padding: 2rem 0 0.5rem;
+}
+
+/* Judul besar "PDF-Shield" */
+.app-header h1 {
+    font-size: 3rem !important;
+    font-weight: 800 !important;
+    color: #101828 !important;
+    margin: 0 0 0.5rem !important;
+    line-height: 1.15;
+    letter-spacing: -0.6px;
+}
+
+/* Bagian "Shield" yang berwarna hijau-biru (teal) */
+.app-header h1 em {
+    color: #009688;
+    font-style: normal;
+}
+
+/* Teks kecil di bawah judul */
+.app-header .tagline {
+    font-size: 1rem;
+    color: #667085;
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+/* Garis tipis pemisah antara header dan konten */
+.header-rule {
+    border: none;
+    border-top: 1px solid #e4e7ec;
+    margin: 1rem 0 1.25rem;
+}
+
+
+/* ----------------------------------------------------------
+   BADGE "SISTEM SIAP"
+   Indikator kecil berwarna hijau yang muncul setelah model
+   berhasil dimuat.
+   ---------------------------------------------------------- */
+.model-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #f0faf5;
+    border: 1px solid #a8d5b9;
+    border-radius: 999px;
+    padding: 5px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #1b7f4f;
+    margin-bottom: 0.5rem;
+}
+
+/* Titik animasi hijau yang berkedip */
+.model-status .dot {
+    width: 7px;
+    height: 7px;
+    background: #1b7f4f;
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: kedip 2.4s ease-in-out infinite;
+}
+
+@keyframes kedip {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.85); }
+}
+
+
+/* ----------------------------------------------------------
+   LABEL PEMISAH BAGIAN (SECTION DIVIDER)
+   Teks kecil abu-abu kapital dengan garis di sampingnya.
+   Contoh: "HASIL PEMINDAIAN" atau "DATA STRUKTUR FILE"
+   ---------------------------------------------------------- */
+.sec-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #98a2b3;
+    margin: 0 0 0.85rem;
+}
+
+/* Garis otomatis di sebelah kanan teks */
+.sec-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e4e7ec;
+}
+
+
+/* ----------------------------------------------------------
+   AREA UPLOAD FILE
+   ---------------------------------------------------------- */
+[data-testid="stFileUploader"] {
+    background: #ffffff !important;
+    border: 2px dashed #d0d5dd !important;
+    border-radius: 14px !important;
+    transition: border-color 0.15s, background 0.15s !important;
+}
+
+[data-testid="stFileUploader"]:hover {
+    border-color: #9aa3af !important;
+    background: #f4f6f8 !important;
+}
+
+[data-testid="stFileUploader"] section {
+    border: none !important;
+    background: transparent !important;
+    padding: 0.75rem 1.25rem !important;
+}
+
+[data-testid="stFileUploader"] * {
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Sembunyikan instructions & button bawaan Streamlit */
+[data-testid="stFileUploaderDropzoneInstructions"] {
+    display: none !important;
+}
+
+[data-testid="stFileUploader"] button {
+    display: none !important;
+}
+
+/* Dropzone container — flex row, file chip mengisi sisa ruang */
+[data-testid="stFileUploaderDropzone"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    min-height: 150px !important;
+    cursor: pointer !important;
+    position: relative !important;
+}
+
+/* Teks placeholder — selalu tersembunyi saat ada file,
+   pakai selector sibling: jika ada stFileUploaderFile di section,
+   sembunyikan ::before pada dropzone */
+[data-testid="stFileUploaderDropzone"]::before {
+    content: "Klik atau seret file PDF ke sini";
+    color: #667085 !important;
+    font-size: 0.9rem !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 400 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    white-space: nowrap !important;
+}
+
+/* Saat ada file — sembunyikan teks placeholder via sibling selector */
+[data-testid="stFileUploaderDropzone"]:has(~ * [data-testid="stFileUploaderFile"])::before,
+[data-testid="stFileUploaderDropzone"]:has([data-testid="stFileUploaderFile"])::before {
+    display: none !important;
+}
+
+/* List file — full width */
+[data-testid="stFileUploader"] section > div,
+[data-testid="stFileUploader"] section ul {
+    width: 100% !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+[data-testid="stFileUploader"] section li {
+    width: 100% !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* ----------------------------------------------------------
+   IKON SILANG (X) PENGHAPUS FILE
+   Buang border, background, dan kotak. Cuma nyisa X murni.
+   ---------------------------------------------------------- */
+[data-testid="stFileUploaderDeleteBtn"] button {
+    background-color: transparent !important; /* Bikin tembus pandang */
+    border: none !important;                  /* Buang garis kotaknya */
+    color: #667085 !important;                /* Kasih warna abu-abu elegan */
+    box-shadow: none !important;
+    padding: 0 !important;                    /* Buang spasi di dalam kotak */
+}
+
+[data-testid="stFileUploaderDeleteBtn"] button:hover,
+[data-testid="stFileUploaderDeleteBtn"] button:focus {
+    background-color: transparent !important;
+    border: none !important;
+    color: #667085 !important;                /* Berubah merah dikit pas kesentuh */
+    box-shadow: none !important;
+}
+
+/* ----------------------------------------------------------
+   CHIP NAMA FILE — disembunyikan, diganti custom HTML di app.py
+   ---------------------------------------------------------- */
+[data-testid="stFileUploaderFile"] {
+    display: none !important;
+}
+
+/* Custom chip dari app.py */
+.custom-file-chip {
+    background: #000000;
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.custom-file-chip .chip-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    color: #ffffff;
+}
+
+.custom-file-chip .chip-name {
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.custom-file-chip .chip-size {
+    color: #aaaaaa;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------
+   TOMBOL FALLBACK (tidak ada kind attribute)
+   Hanya berlaku untuk tombol yang tidak memiliki kind="primary"
+   atau kind="secondary" — agar tidak menimpa gaya premium di atas.
+   ---------------------------------------------------------- */
+.stButton > button:not([kind]) {
+    background: #000000 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 0.92rem !important;
+    letter-spacing: 0.4px !important;
+    padding: 0.7rem 2rem !important;
+    box-shadow: 0 1px 3px rgba(16,24,40,0.10) !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    line-height: normal !important;
+    display: block !important;
+    white-space: nowrap !important;
+    transition: none !important;
+}
+
+.stButton > button:not([kind]):hover,
+.stButton > button:not([kind]):focus,
+.stButton > button:not([kind]):active,
+.stButton > button:not([kind]):focus-visible {
+    background: #000000 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border: none !important;
+    box-shadow: 0 1px 3px rgba(16,24,40,0.10) !important;
+    transform: none !important;
+    outline: none !important;
+    opacity: 1 !important;
+}
+
+
+/* ----------------------------------------------------------
+   KARTU INFO FILE (setelah file dipilih)
+   Kotak putih yang menampilkan nama dan ukuran file PDF.
+   ---------------------------------------------------------- */
+.file-card {
+    background: #ffffff;
+    border: 1px solid #e4e7ec;
+    border-left: 3px solid #009688;   /* garis aksen teal di kiri */
+    border-radius: 10px;
+    padding: 0.9rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.05);
+    margin-bottom: 1.25rem;
+}
+
+.file-card .fc-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+/* Label kecil "FILE DIPILIH" */
+.file-card .fc-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #98a2b3;
+    margin-bottom: 2px;
+}
+
+/* Nama file */
+.file-card .fc-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #101828;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 600px;
+}
+
+/* Info ukuran dan tipe file */
+.file-card .fc-meta {
+    font-size: 0.78rem;
+    color: #667085;
+    margin-top: 2px;
+}
+
+
+/* ----------------------------------------------------------
+   KOTAK HASIL: AMAN (warna hijau lembut)
+   Ditampilkan ketika file dinyatakan aman.
+   ---------------------------------------------------------- */
+.result-safe {
+    background: #f0faf5;
+    border: 1px solid #a8d5b9;
+    border-radius: 14px;
+    padding: 1.6rem 1.75rem;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.05);
+}
+
+.result-safe .rs-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.result-safe .rs-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1b7f4f;
+    margin: 0 0 0.4rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.result-safe .rs-desc {
+    font-size: 0.92rem;
+    color: #1a4731;
+    line-height: 1.65;
+    margin: 0;
+}
+
+
+/* ----------------------------------------------------------
+   KOTAK HASIL: VIRUS (warna merah lembut)
+   Ditampilkan ketika file terdeteksi mengandung virus.
+   ---------------------------------------------------------- */
+.result-virus {
+    background: #fef6f6;
+    border: 1px solid #f0b8b8;
+    border-radius: 14px;
+    padding: 1.6rem 1.75rem;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.05);
+}
+
+.result-virus .rm-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.result-virus .rm-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #b91c1c;
+    margin: 0 0 0.4rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.result-virus .rm-desc {
+    font-size: 0.92rem;
+    color: #7f1d1d;
+    line-height: 1.65;
+    margin: 0;
+}
+
+
+/* ----------------------------------------------------------
+   KARTU DETAIL ANCAMAN
+   Setiap ancaman yang ditemukan ditampilkan dalam kartu ini.
+   ---------------------------------------------------------- */
+.threat-card {
+    background: #ffffff;
+    border: 1px solid #e4e7ec;
+    border-radius: 10px;
+    padding: 1.1rem 1.3rem;
+    margin-top: 0.65rem;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.05);
+}
+
+/* Baris atas kartu: nomor, nama ancaman, badge level */
+.threat-card .tc-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 7px;
+}
+
+/* Nomor urut ancaman, misal "#01" */
+.threat-card .tc-num {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #98a2b3;
+    background: #f8f9fa;
+    border-radius: 4px;
+    padding: 2px 7px;
+    letter-spacing: 0.3px;
+    flex-shrink: 0;
+}
+
+/* Nama/judul jenis ancaman */
+.threat-card .tc-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #101828;
+    flex: 1;
+}
+
+/* Kode indikator teknis, misal "/Launch terdeteksi [2x]" */
+.threat-card .tc-indicator {
+    display: inline-block;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 0.78rem;
+    color: #667085;
+    background: #f8f9fa;
+    border: 1px solid #e4e7ec;
+    border-radius: 4px;
+    padding: 3px 9px;
+    margin-bottom: 7px;
+}
+
+/* Penjelasan ancaman */
+.threat-card .tc-desc {
+    font-size: 0.9rem;
+    color: #344054;
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* Kotak saran tindakan (warna teal muda) */
+.threat-card .tc-rec {
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+    margin-top: 10px;
+    background: #e0f2f1;
+    border: 1px solid #b2dfdb;
+    border-radius: 6px;
+    padding: 8px 11px;
+    font-size: 0.87rem;
+    color: #00504a;
+    line-height: 1.55;
+}
+
+
+/* ----------------------------------------------------------
+   BADGE LEVEL ANCAMAN
+   Label kecil pill berwarna sesuai tingkat bahaya.
+   ---------------------------------------------------------- */
+
+/* KRITIS — merah */
+.badge-kritis {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 9px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* TINGGI — oranye */
+.badge-tinggi {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #fff7ed;
+    color: #9a3412;
+    border: 1px solid #fdba74;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 9px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* MENENGAH — kuning kecokelatan */
+.badge-menengah {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #fffbeb;
+    color: #92400e;
+    border: 1px solid #fcd34d;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 9px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* RENDAH-SEDANG — ungu */
+.badge-rendah {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #f5f3ff;
+    color: #5b21b6;
+    border: 1px solid #c4b5fd;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 9px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+
+/* ----------------------------------------------------------
+   TABEL DATA STRUKTUR FILE
+   Menampilkan daftar tag PDF yang ditemukan dalam file.
+   Font diperbesar ke 1.05rem agar mudah dibaca di proyektor.
+   ---------------------------------------------------------- */
+.meta-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Inter', sans-serif;
+    /* Font tabel diperbesar ke 1.05rem untuk presentasi proyektor */
+    font-size: 1.05rem;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.05);
+    border: 1px solid #e4e7ec;
+}
+
+/* Baris header tabel */
+.meta-table th {
+    background: #f8f9fa;
+    color: #667085;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #e4e7ec;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+/* Sel data tabel */
+.meta-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #e4e7ec;
+    color: #344054;
+    vertical-align: middle;
+}
+
+/* Baris terakhir tidak perlu garis bawah */
+.meta-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Efek hover baris tabel */
+.meta-table tr:hover td {
+    background: #f8f9fa;
+}
+
+/* Warna merah untuk tag berbahaya */
+.meta-table td.danger {
+    color: #b91c1c;
+    font-weight: 700;
+}
+
+/* Warna hijau untuk tag yang ada tapi tidak berbahaya */
+.meta-table td.ok {
+    color: #1b7f4f;
+    font-weight: 600;
+}
+
+/* Label kecil tag PDF, misal "/JS" atau "/Launch" */
+.tag-pill {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 0.85rem;
+    color: #009688;
+    background: #e0f2f1;
+    border: 1px solid #b2dfdb;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+
+/* ----------------------------------------------------------
+   KOTAK METRIK (STATUS, HASIL AI, SINYAL BAHAYA)
+   Kotak-kotak info kecil yang muncul setelah pemindaian.
+   ---------------------------------------------------------- */
+[data-testid="stMetric"] {
+    background: #ffffff !important;
+    border: 1px solid #e4e7ec !important;
+    border-radius: 10px !important;
+    padding: 0.9rem 1rem !important;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.05) !important;
+}
+
+[data-testid="stMetricLabel"] p {
+    color: #667085 !important;
+    font-size: 0.77rem !important;
+    font-weight: 500 !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+[data-testid="stMetricValue"] {
+    color: #101828 !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+[data-testid="stMetricDelta"] {
+    font-size: 0.75rem !important;
+}
+
+
+/* ----------------------------------------------------------
+   EXPANDER (LOG TEKNIS)
+   Bagian yang bisa dibuka-tutup untuk melihat data detail.
+   ---------------------------------------------------------- */
+[data-testid="stExpander"] {
+    background: #ffffff !important;
+    border: 1px solid #e4e7ec !important;
+    border-radius: 10px !important;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.05) !important;
+}
+
+[data-testid="stExpander"] summary {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    color: #344054 !important;
+    padding: 0.7rem 1rem !important;
+}
+
+
+/* ----------------------------------------------------------
+   PESAN ALERT (st.success, st.error, st.warning)
+   Mengatur tampilan umum pesan notifikasi dari Streamlit.
+   ---------------------------------------------------------- */
+.stAlert {
+    border-radius: 10px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.9rem !important;
+}
+
+
+/* ----------------------------------------------------------
+   TOMBOL UNDUH LOG
+   Tombol kecil untuk mengunduh file JSON hasil pemindaian.
+   ---------------------------------------------------------- */
+[data-testid="stDownloadButton"] > button {
+    background: #ffffff !important;
+    color: #009688 !important;
+    border: 1px solid #009688 !important;
+    border-radius: 6px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    padding: 0.45rem 1.25rem !important;
+    transition: none !important;
+    box-shadow: none !important;
+}
+
+[data-testid="stDownloadButton"] > button:hover {
+    background: #e0f2f1 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+
+/* ----------------------------------------------------------
+   BANNER "MODEL BELUM SIAP"
+   Muncul ketika file model AI belum dilatih/tersedia.
+   ---------------------------------------------------------- */
+.missing-banner {
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin: 0.5rem 0 1rem;
+}
+
+.missing-banner .mb-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #92400e;
+    margin-bottom: 0.35rem;
+}
+
+.missing-banner p {
+    font-size: 0.9rem;
+    color: #344054;
+    margin: 0;
+    line-height: 1.65;
+}
+
+.missing-banner code {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.84rem;
+}
+
+
+/* ----------------------------------------------------------
+   DISCLAIMER / CATATAN DI BAWAH HALAMAN
+   Kotak kuning muda berisi peringatan ringan untuk pengguna.
+   ---------------------------------------------------------- */
+.disclaimer-strip {
+    margin-top: 0.3rem;
+    padding: 0.9rem 1.1rem;
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 10px;
+    font-size: 0.87rem;
+    color: #78350f;
+    line-height: 1.65;
+}
+
+
+/* ----------------------------------------------------------
+   BLOK KODE (st.code)
+   Mengatur sudut melengkung pada tampilan kode perintah.
+   ---------------------------------------------------------- */
+.stCodeBlock {
+    border-radius: 6px !important;
+}
+
+
+/* ----------------------------------------------------------
+   PANEL SIAP PINDAI (scan-ready-panel)
+   Menampilkan info file + checklist pre-scan secara elegan.
+   ---------------------------------------------------------- */
+.scan-ready-panel {
+    background: #ffffff;
+    border: 1px solid #e4e7ec;
+    border-radius: 14px;
+    padding: 1.1rem 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    box-shadow: 0 2px 8px rgba(16,24,40,0.06);
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Aksen garis teal di kiri */
+.scan-ready-panel::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #009688, #00bfa5);
+    border-radius: 14px 0 0 14px;
+}
+
+/* Sisi kiri: info file */
+.srp-file-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 0;
+}
+
+.srp-file-icon-wrap {
+    background: #e0f2f1;
+    border-radius: 10px;
+    padding: 10px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.srp-file-details {
+    min-width: 0;
+}
+
+.srp-file-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #101828;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 420px;
+    margin-bottom: 5px;
+}
+
+.srp-file-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    color: #667085;
+}
+
+.srp-meta-badge {
+    background: #e0f2f1;
+    color: #00695c;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    border: 1px solid #b2dfdb;
+}
+
+.srp-dot-sep {
+    color: #d0d5dd;
+}
+
+.srp-ready-text {
+    color: #1b7f4f;
+    font-weight: 600;
+}
+
+/* Sisi kanan: checklist */
+.srp-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.srp-check-item {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.srp-check-ok {
+    color: #1b7f4f;
+}
+
+.srp-check-pending {
+    color: #98a2b3;
+}
+
+.srp-chk {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: #d1fae5;
+    color: #059669;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.srp-chk-p {
+    font-size: 0.75rem;
+    color: #d0d5dd;
+    width: 17px;
+    height: 17px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+
+/* ----------------------------------------------------------
+   TOMBOL UTAMA — upgrade premium dengan glow effect
+   ---------------------------------------------------------- */
+.stButton > button[kind="primary"] {
+    background: #000000 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.93rem !important;
+    letter-spacing: 0.3px !important;
+    padding: 0.75rem 1.25rem !important;
+    box-shadow: 0 1px 3px rgba(16,24,40,0.12) !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    min-width: 0 !important;
+    width: auto !important;
+    transition: none !important;
+}
+
+.stButton > button[kind="primary"]:hover,
+.stButton > button[kind="primary"]:focus,
+.stButton > button[kind="primary"]:active,
+.stButton > button[kind="primary"]:focus-visible {
+    background: #000000 !important;
+    box-shadow: 0 1px 3px rgba(16,24,40,0.12) !important;
+    transform: none !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border: none !important;
+    outline: none !important;
+}
+
+/* Tombol sekunder "Panduan Aman" — lebar ikut konten, tidak full width */
+.stButton > button[kind="secondary"] {
+    width: auto !important;
+    display: inline-block !important;
+}
+
+/* Tombol sekunder "Panduan Aman" */
+.stButton > button[kind="secondary"] {
+    background: #ffffff !important;
+    color: #344054 !important;
+    -webkit-text-fill-color: #344054 !important;
+    border: 1.5px solid #d0d5dd !important;
+    border-radius: 10px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 0.91rem !important;
+    letter-spacing: 0.2px !important;
+    padding: 0.75rem 1.5rem !important;
+    box-shadow: 0 1px 3px rgba(16,24,40,0.06) !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    transition: border-color 0.15s, background 0.15s !important;
+}
+
+.stButton > button[kind="secondary"]:hover {
+    background: #f8f9fa !important;
+    border-color: #98a2b3 !important;
+    color: #344054 !important;
+    -webkit-text-fill-color: #344054 !important;
+}
+
+
+/* ----------------------------------------------------------
+   CATATAN BAWAH TOMBOL
+   Baris kecil info privasi/model di bawah tombol.
+   ---------------------------------------------------------- */
+.scan-footer-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: #98a2b3;
+    margin-top: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.sfn-sep {
+    color: #d0d5dd;
+}
+
+
+/* ----------------------------------------------------------
+   PANDUAN KEAMANAN — dalam st.expander
+   ---------------------------------------------------------- */
+
+/* Styling expander panduan aman */
+[data-testid="stExpander"]:has(summary span) {
+    background: #ffffff !important;
+    border: 1px solid #e4e7ec !important;
+    border-radius: 10px !important;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.04) !important;
+    margin-top: 0.5rem !important;
+}
+
+.guide-panel-inner {
+    padding: 0.25rem 0 0.5rem;
+}
+
+.gp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+}
+
+.gp-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid #e4e7ec;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+}
+
+.gp-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.gp-item strong {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #101828;
+    margin-bottom: 3px;
+}
+
+.gp-item p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    color: #667085;
+    margin: 0;
+    line-height: 1.55;
+}
+
+
+/* ----------------------------------------------------------
+   TOMBOL PANDUAN AMAN (toggle JS, di samping tombol scan)
+   ---------------------------------------------------------- */
+.btn-guide-toggle {
+    width: 100%;
+    background: #ffffff !important;
+    color: #344054 !important;
+    border: 1.5px solid #d0d5dd !important;
+    border-radius: 10px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 0.91rem !important;
+    padding: 0.75rem 1rem !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    box-shadow: 0 1px 3px rgba(16,24,40,0.06) !important;
+    transition: border-color 0.15s, background 0.15s !important;
+    display: block !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+}
+
+.btn-guide-toggle:hover {
+    background: #f8f9fa !important;
+    border-color: #98a2b3 !important;
+}
+
+.btn-guide-toggle.active {
+    background: #f0faf5 !important;
+    border-color: #009688 !important;
+    color: #00695c !important;
+}
+
+/* Animasi slide-down panel panduan */
+@keyframes guideSlideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Panel panduan (versi collapsible) */
+.guide-panel {
+    background: #f8f9fa;
+    border: 1px solid #e4e7ec;
+    border-radius: 12px;
+    padding: 1.1rem 1.4rem;
+    box-shadow: 0 1px 3px rgba(16,24,40,0.05);
+}
+
+.gp-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #344054;
+    margin-bottom: 0.85rem;
+    letter-spacing: 0.2px;
+}
+
+
+/* ----------------------------------------------------------
+   SCROLLBAR
+   Membuat scrollbar halaman lebih tipis dan rapi.
+   ---------------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f0f2f5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d0d5dd;
+    border-radius: 99px;
+}
