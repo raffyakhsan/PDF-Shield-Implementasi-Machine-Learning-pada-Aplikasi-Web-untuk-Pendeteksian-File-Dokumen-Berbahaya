@@ -1232,3 +1232,314 @@ div[data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) {
     background: #d0d5dd;
     border-radius: 99px;
 }
+
+
+/* ----------------------------------------------------------
+   MOBILE RESPONSIVE — layar ≤ 480px
+   ---------------------------------------------------------- */
+@media (max-width: 480px) {
+
+    /* ── FONT GLOBAL ── */
+    html, body, .stApp {
+        font-size: 15px !important;
+    }
+
+    /* ── CONTAINER UTAMA — pertahankan padding atas, kurangi bawah ── */
+    .block-container {
+        padding: 1.5rem 0.75rem 1rem !important;
+    }
+
+    /* Streamlit menambah gap besar antar elemen — kurangi sedikit saja */
+    [data-testid="stVerticalBlock"] {
+        gap: 0.6rem !important;
+    }
+
+    /* Margin elemen — kurangi tipis, jangan nol */
+    [data-testid="stVerticalBlockBorderWrapper"],
+    [data-testid="element-container"] {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Hapus margin bawaan markdown */
+    .stMarkdown {
+        margin-bottom: 0 !important;
+    }
+
+    /* <br> spacer — kurangi sedikit dari default */
+    .stMarkdown br {
+        display: block !important;
+        content: "" !important;
+        margin-top: 0.3rem !important;
+    }
+
+    /* ── HEADER ── */
+    .app-header {
+        padding: 2rem 0 0.5rem !important;
+    }
+
+    .app-header h1 {
+        font-size: 2.2rem !important;
+        margin: 0 0 0.4rem !important;
+    }
+
+    .app-header .tagline {
+        font-size: 0.88rem !important;
+        line-height: 1.55 !important;
+    }
+
+    .header-rule {
+        margin: 0.75rem 0 0.85rem !important;
+    }
+
+    /* ── BADGE STATUS MODEL ── */
+    .model-status {
+        font-size: 0.75rem !important;
+        padding: 4px 10px !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    /* ── ZONA UPLOAD FILE ── */
+    [data-testid="stFileUploader"] {
+        margin-bottom: 0 !important;
+    }
+
+    [data-testid="stFileUploaderDropzone"] {
+        min-height: 90px !important;
+    }
+
+    /* ── SCAN-READY-PANEL ── */
+    .scan-ready-panel {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.65rem !important;
+        padding: 0.85rem 1rem 0.85rem 1.15rem !important;
+        margin-top: 0 !important;
+        margin-bottom: 0.4rem !important;
+    }
+
+    .srp-file-name {
+        max-width: 100% !important;
+        font-size: 0.86rem !important;
+    }
+
+    .srp-checklist {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 5px !important;
+    }
+
+    .srp-check-item {
+        font-size: 0.7rem !important;
+    }
+
+    .srp-file-icon-wrap {
+        padding: 7px !important;
+    }
+
+    /* ── TOMBOL ── */
+    .stButton > button[kind="primary"],
+    .stButton > button[kind="secondary"],
+    .stButton > button:not([kind]) {
+        width: 100% !important;
+        white-space: normal !important;
+        font-size: 0.88rem !important;
+        padding: 0.6rem 1rem !important;
+    }
+
+    /* ── SEC-LABEL (pemisah bagian) ── */
+    .sec-label {
+        margin: 0 0 0.5rem !important;
+        font-size: 0.68rem !important;
+    }
+
+    /* ── RESULT BOXES ── */
+    .result-safe,
+    .result-virus {
+        padding: 1rem 1rem !important;
+        border-radius: 10px !important;
+    }
+
+    .result-safe .rs-icon,
+    .result-virus .rm-icon {
+        font-size: 1.4rem !important;
+        margin-bottom: 0.3rem !important;
+    }
+
+    .result-safe .rs-title,
+    .result-virus .rm-title {
+        font-size: 1rem !important;
+        margin: 0 0 0.3rem !important;
+    }
+
+    .result-safe .rs-desc,
+    .result-virus .rm-desc {
+        font-size: 0.85rem !important;
+        line-height: 1.55 !important;
+    }
+
+    /* ── METRIK — stack vertikal, bukan 3 kolom sempit ── */
+    div[data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) {
+        flex-direction: column !important;
+        gap: 0.4rem !important;
+    }
+
+    div[data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) > div {
+        width: 100% !important;
+        flex: unset !important;
+        min-width: unset !important;
+    }
+
+    [data-testid="stMetric"] {
+        padding: 0.65rem 0.9rem !important;
+    }
+
+    [data-testid="stMetricValue"] {
+        font-size: 1rem !important;
+    }
+
+    [data-testid="stMetricLabel"] p {
+        font-size: 0.73rem !important;
+    }
+
+    [data-testid="stMetricDelta"] {
+        font-size: 0.7rem !important;
+    }
+
+    /* ── ALERT (st.success, st.error, st.warning) ── */
+    .stAlert {
+        padding: 0.6rem 0.85rem !important;
+        font-size: 0.84rem !important;
+        margin: 0 !important;
+    }
+
+    /* ── FILE CARD ── */
+    .file-card {
+        padding: 0.65rem 0.9rem !important;
+        gap: 0.65rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .file-card .fc-name {
+        font-size: 0.83rem !important;
+        max-width: 100% !important;
+    }
+
+    .file-card .fc-meta {
+        font-size: 0.72rem !important;
+    }
+
+    /* ── THREAT CARD ── */
+    .threat-card {
+        padding: 0.8rem 0.9rem !important;
+        margin-top: 0.45rem !important;
+    }
+
+    .threat-card .tc-title {
+        font-size: 0.83rem !important;
+    }
+
+    .threat-card .tc-desc {
+        font-size: 0.81rem !important;
+        line-height: 1.55 !important;
+    }
+
+    .threat-card .tc-rec {
+        font-size: 0.8rem !important;
+        padding: 7px 9px !important;
+        margin-top: 7px !important;
+    }
+
+    .threat-card .tc-indicator {
+        font-size: 0.72rem !important;
+        padding: 2px 7px !important;
+    }
+
+    /* ── TABEL META ── */
+    .meta-table {
+        font-size: 0.8rem !important;
+        display: block !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        white-space: nowrap !important;
+    }
+
+    .meta-table th,
+    .meta-table td {
+        padding: 7px 9px !important;
+    }
+
+    /* ── EXPANDER LOG TEKNIS ── */
+    [data-testid="stExpander"] summary {
+        font-size: 0.83rem !important;
+        padding: 0.55rem 0.85rem !important;
+    }
+
+    /* ── PANDUAN GRID — 1 kolom ── */
+    .gp-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem !important;
+    }
+
+    .gp-item {
+        padding: 0.65rem 0.85rem !important;
+    }
+
+    .guide-panel {
+        padding: 0.85rem 1rem !important;
+    }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer-strip {
+        font-size: 0.81rem !important;
+        padding: 0.7rem 0.9rem !important;
+        margin-top: 0.35rem !important;
+    }
+
+    /* ── CUSTOM FILE CHIP di dropzone ── */
+    .custom-file-chip {
+        padding: 9px 11px !important;
+    }
+
+    .custom-file-chip .chip-name {
+        font-size: 0.81rem !important;
+    }
+
+    /* ── DOWNLOAD BUTTON ── */
+    [data-testid="stDownloadButton"] > button {
+        font-size: 0.8rem !important;
+        padding: 0.4rem 1rem !important;
+    }
+
+    /* ── BUNUH WHITESPACE FOOTER BAWAAN STREAMLIT ── */
+    /* Streamlit nambah padding besar di bawah halaman — hapus semua */
+    footer { display: none !important; }
+
+    [data-testid="stBottom"] {
+        display: none !important;
+        height: 0 !important;
+        min-height: 0 !important;
+    }
+
+    [data-testid="stAppViewContainer"] {
+        padding-bottom: 0 !important;
+    }
+
+    [data-testid="stAppViewContainer"] > section {
+        padding-bottom: 0 !important;
+    }
+
+    /* Streamlit main wrapper extra bottom space */
+    .main > div {
+        padding-bottom: 0 !important;
+    }
+
+    /* Hapus spacer kosong terakhir yang Streamlit inject otomatis */
+    [data-testid="stVerticalBlock"] > [data-testid="element-container"]:last-child:empty,
+    [data-testid="stVerticalBlock"] > div:last-child:empty {
+        display: none !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}

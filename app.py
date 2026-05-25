@@ -447,15 +447,35 @@ def main():
         # ── Baris tombol: Mulai Pemindaian + Panduan Aman ──
         st.markdown("""
         <style>
-        div[data-testid="column"] .stButton > button {
-            width: auto !important;
-            display: inline-flex !important;
+        /* Desktop: tombol ikut konten */
+        @media (min-width: 481px) {
+            div[data-testid="column"] .stButton > button {
+                width: auto !important;
+                display: inline-flex !important;
+            }
+            div[data-testid="stHorizontalBlock"] {
+                gap: 0 !important;
+            }
+            div[data-testid="stHorizontalBlock"] > div:nth-child(2) {
+                padding-left: 1.5rem !important;
+            }
         }
-        div[data-testid="stHorizontalBlock"] {
-            gap: 0 !important;
-        }
-        div[data-testid="stHorizontalBlock"] > div:nth-child(2) {
-            padding-left: 1.5rem !important;
+        /* Mobile: tombol full width, stack vertikal */
+        @media (max-width: 480px) {
+            div[data-testid="stHorizontalBlock"]:has(.stButton) {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+            div[data-testid="stHorizontalBlock"]:has(.stButton) > div {
+                width: 100% !important;
+                flex: unset !important;
+                min-width: unset !important;
+            }
+            div[data-testid="column"] .stButton > button {
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+            }
         }
         </style>
         """, unsafe_allow_html=True)
@@ -463,14 +483,14 @@ def main():
         with col_btn_main:
             tombol_analisis = st.button(
                 "Mulai Pemindaian",
-                use_container_width=False,
+                use_container_width=True,
                 type="primary",
                 key="btn_scan",
             )
         with col_btn_guide:
             tombol_info = st.button(
                 "Panduan Aman",
-                use_container_width=False,
+                use_container_width=True,
                 type="secondary",
                 key="btn_guide",
             )
