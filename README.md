@@ -41,8 +41,9 @@ deteksi-pdf/
 
 ```bash
 # 1. Clone atau ekstrak repositori ini
-git clone https://github.com/raffyakhsan/PDF-Shield-Implementasi-Machine-Learning-pada-Aplikasi-Web-u
-cd PDF-Shield-Implementasi-Machine-Learning-pada-Aplikasi-Web-u
+git clone https://github.com/raffyakhsan/PDF-Shield-Implementasi-Machine-Learning-pada-Aplikasi-Web-untuk-Pendeteksian-File-Dokumen-Berbahaya.git
+
+cd PDF-Shield-Implementasi-Machine-Learning-pada-Aplikasi-Web-untuk-Pendeteksian-File-Dokumen-Berbahaya
 
 # 2. (Opsional) Buat virtual environment
 python -m venv venv
